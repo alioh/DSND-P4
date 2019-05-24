@@ -13131,7 +13131,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Project-Details:">Project Details:<a class="anchor-link" href="#Project-Details:">&#182;</a></h2><p>This project is part of Udacity's Data Scientist Nanodegree program. In this project, I am asked to pick a dataset and answer any 3 questions from the data. The project will follow <a href="https://www.sv-europe.com/crisp-dm-methodology/">CRISP-DM process</a> (Cross Industry Process for Data Mining). CRISP-DM stands for:</p>
+<h2 id="Project-Details:-Insights-on-Saudi-Professional-League-Matches">Project Details: Insights on Saudi Professional League Matches<a class="anchor-link" href="#Project-Details:-Insights-on-Saudi-Professional-League-Matches">&#182;</a></h2><p>This project is part of Udacity's Data Scientist Nanodegree program. In this project, I am asked to pick a dataset and answer any 3 questions from the data. The project will follow <a href="https://www.sv-europe.com/crisp-dm-methodology/">CRISP-DM process</a> (Cross Industry Process for Data Mining). CRISP-DM stands for:</p>
 <ul>
 <li>Business understanding</li>
 <li>Data understanding</li>
@@ -15329,15 +15329,16 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Functions to fix the issues mentioned in the previous paragraph.</span>
-<span class="c1"># This function will fix the day/date.</span>
-
-
-<span class="k">def</span> <span class="nf">fix_daydate</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fix_daydate</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functions to fix the day and date.</span>
+<span class="sd">    gets dataframe and returns dataframe with two new columns:</span>
+<span class="sd">    1- Day</span>
+<span class="sd">    2- Date in DD/MM/YYYY Format</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Day&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># change date to proper date format DD/MM/YYYY</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
 
@@ -16918,11 +16919,11 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># gets sum all goals of team before current game</span>
-<span class="c1"># for columns: HT_goals_before_game &amp; AT_goals_before_game</span>
-
-
-<span class="k">def</span> <span class="nf">scores_before</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">scores_before</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns sum all goals of team before current game</span>
+<span class="sd">    for columns: HT_goals_before_game &amp; AT_goals_before_game</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">as_home_goals</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
                             <span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Home team ID&#39;</span><span class="p">]</span> <span class="o">==</span>
                              <span class="n">team</span><span class="p">)][[</span><span class="s1">&#39;home score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -16931,31 +16932,37 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
                              <span class="n">team</span><span class="p">)][[</span><span class="s1">&#39;away score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">as_home_goals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">as_away_goals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># gets team goals at home before current date</span>
-<span class="c1"># for columns: HT_goals_at_home &amp; AT_goals_at_home</span>
-
 
 <span class="k">def</span> <span class="nf">score_at_h</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns team goals at home before current date</span>
+<span class="sd">    for columns: HT_goals_at_home &amp; AT_goals_at_home</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">total_goals</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
                           <span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Home team ID&#39;</span><span class="p">]</span> <span class="o">==</span>
                            <span class="n">team</span><span class="p">)][[</span><span class="s1">&#39;home score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">total_goals</span>
 
-<span class="c1"># gets team goals at away before current date</span>
-<span class="c1"># for columns: HT_goals_at_away &amp; AT_goals_at_away</span>
-
 
 <span class="k">def</span> <span class="nf">score_at_a</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns team goals at away before current date</span>
+<span class="sd">    for columns: HT_goals_at_away &amp; AT_goals_at_away</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">total_goals</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
                           <span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Away team ID&#39;</span><span class="p">]</span> <span class="o">==</span>
                            <span class="n">team</span><span class="p">)][[</span><span class="s1">&#39;away score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">total_goals</span>
 
-<span class="c1"># gets sum of points for a team before current game</span>
-<span class="c1"># for columns: HT_points_before_game &amp; AT_points_before_game</span>
+
 
 
 <span class="k">def</span> <span class="nf">points_before</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns sum of points for a team before current game</span>
+<span class="sd">    for columns: HT_points_before_game &amp; AT_points_before_game</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">team_wins</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span> <span class="o">&amp;</span>
                         <span class="p">(((</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;Home team ID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">team</span><span class="p">)</span> <span class="o">&amp;</span>
                           <span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;home score&#39;</span><span class="p">]</span> <span class="o">&gt;</span>
@@ -16984,7 +16991,10 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">set_goals_by_team</span><span class="p">():</span>
-    <span class="c1"># Add the 8 new columns to the original dataframe</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function that creates eight new features to the original dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_goals_before&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;AT_goals_before&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_goals_at_h&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -18582,11 +18592,13 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns the total goals scored by current line up</span>
-<span class="c1"># for columns: HT_goals_of_lineup &amp; AT_goals_of_lineup</span>
-
-
-<span class="k">def</span> <span class="nf">lineup_score</span><span class="p">(</span><span class="n">game_index</span><span class="p">,</span> <span class="n">team_type</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lineup_score</span><span class="p">(</span><span class="n">game_index</span><span class="p">,</span> <span class="n">team_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function takes match index and team type (Home or Away) and</span>
+<span class="sd">    returns the total goals scored by current line up of the team</span>
+<span class="sd">    for columns: HT_goals_of_lineup &amp; AT_goals_of_lineup</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">home_team</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;Home team ID&#39;</span><span class="p">]</span>
     <span class="n">away_team</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;Away team ID&#39;</span><span class="p">]</span>
     <span class="n">total_lineup_goals</span> <span class="o">=</span> <span class="mi">0</span>
@@ -18598,14 +18610,18 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
             <span class="n">total_lineup_goals</span> <span class="o">+=</span> <span class="n">all_goals_before_game</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">total_lineup_goals</span>
 
-<span class="c1"># this function takes row index and team type,</span>
-<span class="c1"># and returns the team line up in a list</span>
-<span class="c1"># columns of home team lineup are from 13 to 23</span>
-<span class="c1"># columns of away team lineup are from 31 to 41</span>
-<span class="c1"># this is a helper function for lineup_score function</span>
+<span class="c1"># </span>
 
 
 <span class="k">def</span> <span class="nf">get_lineup</span><span class="p">(</span><span class="n">game_index</span><span class="p">,</span> <span class="n">team_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function takes match index and team type (Home or Away)</span>
+<span class="sd">    and returns the team line up in a list:</span>
+<span class="sd">    - columns of home team lineup are from 13 to 23</span>
+<span class="sd">    - columns of away team lineup are from 31 to 41</span>
+<span class="sd">    this is a helper function for lineup_score function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">team_lineup</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">team_type</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">24</span><span class="p">):</span>
@@ -18615,11 +18631,15 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
             <span class="n">team_lineup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">matches</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">n</span><span class="p">][</span><span class="n">game_index</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">team_lineup</span>
 
-<span class="c1"># takes game index and returns its result</span>
-<span class="c1"># for columns: Match_result</span>
+<span class="c1"># </span>
 
 
 <span class="k">def</span> <span class="nf">match_result</span><span class="p">(</span><span class="n">game_index</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function takes match index and returns its result</span>
+<span class="sd">    for columns: Match_result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="k">if</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;home score&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;away score&#39;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="s1">&#39;Home&#39;</span>
     <span class="k">elif</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;home score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;away score&#39;</span><span class="p">]:</span>
@@ -18654,7 +18674,10 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">set_goals_by_players</span><span class="p">():</span>
-    <span class="c1"># Add the 8 new columns to the original dataframe</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns total goals of current team line up.</span>
+<span class="sd">    It adds the 8 new columns to the original dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_goals_of_lineup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;AT_goals_of_lineup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_goals_percent_lineup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -20238,12 +20261,14 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># returns the total yellow and red cards for current line up</span>
-<span class="c1"># for columns: HT_yellow_cards_before &amp; AT_yellow_cards_before</span>
-<span class="c1">#              HT_red_cards_before &amp; AT_red_cards_before</span>
-
-
-<span class="k">def</span> <span class="nf">lineup_cards</span><span class="p">(</span><span class="n">game_index</span><span class="p">,</span> <span class="n">team_type</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lineup_cards</span><span class="p">(</span><span class="n">game_index</span><span class="p">,</span> <span class="n">team_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function takes match index and team type (Home or Away) and</span>
+<span class="sd">    returns the total yellow and red cards for current line up</span>
+<span class="sd">    for columns: HT_yellow_cards_before &amp; AT_yellow_cards_before</span>
+<span class="sd">                 HT_red_cards_before &amp; AT_red_cards_before</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">home_team</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;Home team ID&#39;</span><span class="p">]</span>
     <span class="n">away_team</span> <span class="o">=</span> <span class="n">matches</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">game_index</span><span class="p">][</span><span class="s1">&#39;Away team ID&#39;</span><span class="p">]</span>
     <span class="n">total_yellow_cards</span> <span class="o">=</span> <span class="mi">0</span>
@@ -20287,7 +20312,11 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">set_cards</span><span class="p">():</span>
-    <span class="c1"># Add the 4 new columns to the original dataframe</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function that sets Home and Away team cards</span>
+<span class="sd">    the 4 new columns to the original dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_yellow_cards&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;AT_yellow_cards&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;HT_red_cards&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -21913,7 +21942,7 @@ Tha plan is to collect as much data as I can, what I managed to gather is full d
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Combining al seasons togther in one dataframe, then ill remove unwanted features / columns and check for NaN values.</p>
+<h3 id="NaN-Values-Checking">NaN Values Checking<a class="anchor-link" href="#NaN-Values-Checking">&#182;</a></h3><p>Combining al seasons togther in one dataframe, then ill remove unwanted features / columns and check for NaN values.</p>
 
 </div>
 </div>
@@ -22292,6 +22321,13 @@ Testing set has 308 samples.
 
 
 <span class="k">def</span> <span class="nf">train_predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Train and predict model results. </span>
+<span class="sd">    Returns result dictonary with all model details and score.</span>
+<span class="sd">    This is helper function to test more than one model without</span>
+<span class="sd">    repetition of the code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># to get how long my model takes</span>
@@ -22638,8 +22674,12 @@ Testing set has 308 samples.
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># function retuns results of model before and after tuning</span>
-<span class="k">def</span> <span class="nf">print_tuning_result</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_tuning_result</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns results of model before and after tuning.</span>
+<span class="sd">    Helper function to avoid repetition.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39; &lt;&lt;&lt; </span><span class="si">{model.__class__.__name__}</span><span class="s1"> &gt;&gt;&gt;&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;=-=-=-= Before tuning =-=-=-=&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;RandomForestClassifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -22649,6 +22689,11 @@ Testing set has 308 samples.
         <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{k}</span><span class="s1">: {round(v, 5)}&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_best_params</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns best parameters of a model.</span>
+<span class="sd">    Helper function to avoid repetition.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;micro&#39;</span><span class="p">)</span>
     <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scorer</span><span class="p">)</span>
     <span class="n">grid_fit</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
