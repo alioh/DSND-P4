@@ -32,7 +32,7 @@ There is one notebook file that have all the work related to the above questions
 
 
 ## 4. Results <a name="results"></a>
-The main findings of the code can be found [here]().
+The main findings of the code can be found [here](https://alioh.github.io/DSND-P4/).
 
 ## 5. Licensing, Authors, Acknowledgements<a name="licensing"></a>
 Credit goes to [Slstat.com](https://slstat.com) for the data. The data is no longer shared with public so I can't re-post it without permission (waiting on that.). Feel free to ask me anything about the code [@alioh](https://alioh.com)
